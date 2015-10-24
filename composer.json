@@ -1,0 +1,13 @@
+{
+    "name": "ongair/whatsapp",
+    "description": "Ongair WhatsApp Engine",
+    "require": {
+        "chrisboulton/php-resque": "^1.2"
+    },
+    "authors": [
+        {
+            "name": "Trevor Kimenye",
+            "email": "kimenye@gmail.com"
+        }
+    ]
+}
