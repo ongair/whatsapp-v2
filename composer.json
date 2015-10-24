@@ -2,7 +2,9 @@
     "name": "ongair/whatsapp",
     "description": "Ongair WhatsApp Engine",
     "require": {
-        "chrisboulton/php-resque": "dev-master"
+        "chrisboulton/php-resque": "dev-master",
+        "vlucas/phpdotenv": "^2.0",
+        "analog/analog": "^1.0"
     },
     "authors": [
         {
