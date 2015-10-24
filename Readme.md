@@ -1,9 +1,14 @@
 ##Installation##
 How to install this application:
 
-* ###Install Composer###
+### Requirements ###
+Requires PHP5.6+
+
+### Install Composer ###
+
   ```
     curl -sS https://getcomposer.org/installer | php
+    php composer.phar install
   ```
-* 
+ 
 
