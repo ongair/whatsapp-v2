@@ -13,11 +13,13 @@
 
       l("Account is ".$this->account->name);
 
-      $this->wa = new WhatsProt($this->account->phone_number, $this->account->name, getenv('debug') == 'true', true);
+      $this->wa = new WhatsProt($this->account->phone_number, $this->account->name, getenv('debug') == 'true', false);
       $events = new OngairEvents($this->wa, $this);      
       $events->setEventsToListenFor($events->activeEvents);
 
+      l('About to connect');
       $this->wa->connect();
+      l('Connected');
       $this->wa->loginWithPassword($this->account->whatsapp_password);
     }
 

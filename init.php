@@ -1,6 +1,8 @@
 <?php
 
   require 'vendor/autoload.php';
+  Requests::register_autoloader();
+  
   require_once 'client.php';
   require_once 'worker.php';
   require_once 'util.php';

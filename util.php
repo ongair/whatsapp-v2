@@ -13,3 +13,16 @@
   function l($message) {
     Analog::log($message);
   }
+
+  function postToServer($location, $data) {
+    $url = getenv('url').$location;
+
+    l("Posting to $location");
+    $headers = array('Content-Type' => 'application/json', 'Accept' => 'application/json');
+    Requests::post($url, $headers, json_encode($data), array('timeout' => 5000));
+  }
+
+  function getNumber($jid)
+  {
+    return explode("@", $jid)[0];
+  }

@@ -11,35 +11,16 @@
     public $activeEvents = array(
       'onConnect',
       'onLoginSuccess',
-      'onGetMessage'
+      'onGetMessage',
+      'onGetVideo'
     );
 
     public function onGetMessage($account, $from, $id, $type, $time, $name, $body )
     {
       l("Message from $from: $body");
 
-      // # check if the message exists in the db
-      // if (!$this->exists($id)) {
-                
-      //   $phone_number = get_phone_number($from);
-      //   $account_id = $this->client->get_account_id();
-      //   $account = Account::find_by_id($account_id);
-        
-      //   $url = $this->url.'/messages';
-      //   $data = array('account' => $me, 'message' => array( 'text' => $body, 'phone_number' => $phone_number, 'message_type' => 'Text', 'whatsapp_message_id' => $id, 'name' => $name) );
-        
-      //   $this->post($url, $data);
-
-      //   // $contact = Contact::find_by_phone_number_and_account_id($phone_number, $account_id);
-      //   // if (!$contact->synced && $account->experimental) {
-      //     // TODO: How to avoid double syncs
-      //     // $attributes = array('method' => 'sync', 'sent' => false, 'targets' => $contact->phone_number, 'args' => 'Interactive', 'account_id' => $account_id);
-      //     // $job = JobLog::create($attributes);
-      //   // }
-
-      //   $notif = array('type' => 'text', 'phone_number' => $phone_number , 'text' => $body, 'name' => $name);
-      //   $this->send_realtime($notif);
-      // }      
+      $data = array('account' => $account, 'message' => array( 'text' => $body, 'phone_number' => getNumber($from), 'message_type' => 'Text', 'whatsapp_message_id' => $id, 'name' => $name) );
+      postToServer('/messages', $data);
     }
 
     public function onConnect($account, $socket) {
