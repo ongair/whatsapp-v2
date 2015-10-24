@@ -12,3 +12,9 @@ Requires PHP5.6+
   ```
  
 
+### Running ###
+
+```
+    QUEUE=default APP_INCLUDE=processor.php php vendor/bin/resque
+```
+
