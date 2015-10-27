@@ -12,7 +12,8 @@
       'onConnect',
       'onLoginSuccess',
       'onGetMessage',
-      'onGetVideo'
+      'onGetVideo',
+      'onGetReceipt'
     );
 
     public function onGetMessage($account, $from, $id, $type, $time, $name, $body )
@@ -21,6 +22,20 @@
 
       $data = array('account' => $account, 'message' => array( 'text' => $body, 'phone_number' => getNumber($from), 'message_type' => 'Text', 'whatsapp_message_id' => $id, 'name' => $name) );
       postToServer('/messages', $data);
+    }
+
+    public function onGetReceipt( $from, $id, $offline, $retry ) {
+      l("Receipt from $from");
+    }
+
+    public function onGetVideo( $account, $from, $id, $type, $time, $name, $video_url, $file, $size, $mimeType, $fileHash, $duration, $vcodec, $acodec, $preview, $caption )
+    {
+      l("Video received $from: $video_url");
+
+      l("Preview: $preview");
+
+      $data = array('account' => $account, 'message' => array('url' => $video_url, 'message_type' => 'Video', 'phone_number' => getNumber($from), 'whatsapp_message_id' => $id, 'name' => $name, 'caption' => $caption, 'preview' => base64_encode($preview) ));
+      postToServer('/upload', $data);
     }
 
     public function onConnect($account, $socket) {

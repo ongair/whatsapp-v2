@@ -27,9 +27,14 @@
       while($this->connected) {
         l('Starting job loop');
 
-        $this->wa->pollMessage(true, "delivered");
+        $continue = true;
+        while($continue) {
+          $this->wa->pollMessage();
+        }
+
         $this->connected = false;
       }
+      $this->wa->disconnect();
       l('End of job loop');
     }
 
